@@ -4,5 +4,5 @@ metadata:
   name: default
 spec:
   nats:
-    native: {}
-
+    native:
+      auth: token
