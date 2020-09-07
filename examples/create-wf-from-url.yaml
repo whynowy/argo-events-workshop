@@ -12,12 +12,12 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
-  name: sensor-from-git
+  name: sensor-from-url
 spec:
   template:
     serviceAccountName: argo-events-sa
   dependencies:
-    - name: dep001
+    - name: dep01
       eventSourceName: webhook-example
       eventName: example
   triggers:
@@ -29,9 +29,7 @@ spec:
           resource: workflows
           operation: create
           source:
-            git:
-              url: https://github.com/whynowy/argo-events-workshop
-              cloneDirectory: "/tmp"
-              filePath: "examples/workflows/helloworld.yaml"
+            url: 
+              path: https://raw.githubusercontent.com/whynowy/argo-events-workshop/master/examples/workflows/helloworld.yaml
 
 
