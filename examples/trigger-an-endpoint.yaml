@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: calendar-http-get
+spec:
+  calendar:
+    example:
+      interval: 30s
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: http-get-example
+spec:
+  dependencies:
+    - name: dep
+      eventSourceName: calendar-http-get
+      eventName: example
+  triggers:
+    - template:
+        name: http-trigger
+        http:
+          url: https://www.intuit.com/
+          method: GET
